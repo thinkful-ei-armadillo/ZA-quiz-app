@@ -25,23 +25,28 @@
                 <form>
                     <p class="current-question">What year did Steven Gerrard joined Liverpool FC?</p>
                     <ul id="options">
-                        <li><input type="radio" id="Otion-one" name="option"><label for="Option-one">1999</label></li>
-                        <li><input type="radio" id="Otion-two" name="option"><label for="Option-two">2002</label></li>
-                        <li><input type="radio" id="Otion-three" name="option"><label for="Option-three">1998</label></li>
-                        <li><input type="radio" id="Otion-four" name="option"><label for="Option-four">2005</label></li>
+                        <li><input type="radio" id="Option-one" name="option"><label for="Option-one">1999</label></li>
+                        <li><input type="radio" id="Option-two" name="option"><label for="Option-two">2002</label></li>
+                        <li><input type="radio" id="Option-three" name="option"><label for="Option-three">1998</label></li>
+                        <li><input type="radio" id="Option-four" name="option"><label for="Option-four">2005</label></li>
                     </ul>
                     <input type="button" value="Submit Answer" class="submit-answer-button">
                 </form>
             </div>
-
         </div>
 
         <div class="feedback-page">
-
+            <div>
+                <p class="feedback-message">Your answer was <span class="question-result"></span></p>
+                <p class="correct-answer">The correct answer is <span class="correct-answer-result"></span></p>
+            </div>
+            <input type="button" value="Next Question" class="next-question-button">
         </div>
 
         <div class="final-result">
-
+            <p class="result-score-message">Your score was <span class="result-score"></span></p>
+            <p class="message-based-on-result"></p>
+            <input type="button" value="Reset" class="reset-quiz-button">
         </div>
     </main>
 
