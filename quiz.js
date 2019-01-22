@@ -1,4 +1,4 @@
-
+/* global $ */
 'use strict';
 
 
@@ -63,11 +63,23 @@ function generateHtmlQuestionsString(state, question){
         <form>
             <p class="current-question">${currentQuestion}</p>
             <div id="options">
-                <label><input type="radio" id="Option-one" name="option" value="${options[0]}" required> ${options[0]}</label><br>
-                <label><input type="radio" id="Option-two" name="option" value="${options[1]}" required> ${options[1]}</label><br>
-                <label><input type="radio" id="Option-three" name="option" value="${options[2]}" required> ${options[2]}</label><br>
-                <label><input type="radio" id="Option-four" name="option" value="${options[3]}" required> ${options[3]}</label><br>
-                <input type="submit" value="Submit Answer" class="js-submit-answer-button">
+                <label>
+                  <input type="radio" id="Option-one" name="option" value="${options[0]}" required> ${options[0]}
+                </label>
+                <br>
+                <label>
+                  <input type="radio" id="Option-two" name="option" value="${options[1]}" required> ${options[1]}
+                </label>
+                <br>
+                <label>
+                  <input type="radio" id="Option-three" name="option" value="${options[2]}" required> ${options[2]}
+                </label>
+                <br>
+                <label>
+                  <input type="radio" id="Option-four" name="option" value="${options[3]}" required> ${options[3]}
+                </label>
+                <br>
+                  <input type="submit" value="Submit Answer" class="js-submit-answer-button">
             </div>
         </form>
     </div>
@@ -133,9 +145,9 @@ function updateUserScore(){
 // Handle submit answer 
 function handleAnswerSubmit(){   
     // debugger; 
-  $('.js-main').on('click', '.js-submit-answer-button', function(event){
-    // event.preventDefault();
-    const userAnswer = $(this).closest('form').find('input[name="option"]:checked').val();
+  $('.js-main').on('submit', function(event){
+    event.preventDefault();
+    const userAnswer = $('input[name="option"]:checked').val();
     console.log(userAnswer);
     STORE.userAnswer = userAnswer;
     STORE.currentState = 'feedback';
