@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Quiz App</title>
+    <title>LFC Quiz App</title>
+    <meta name="description" content="Test your knowledge about Liverpool FC">
+    <link rel="stylesheet" href="quiz.css" type="style/css">
+
 </head>
 <body>
     <header role="banner">
@@ -12,7 +15,8 @@
     </header>
     <main role="main">
         <section class="start-page">
-            <p>Welcome to quiz......</p>
+            <p>How much of a Liverpool FC supporter are you?</p>
+            <p></p>
             <button class="start-button">Start Quiz</button>
         </section>
 
@@ -25,10 +29,10 @@
                 <form>
                     <p class="current-question">What year did Steven Gerrard joined Liverpool FC?</p>
                     <ul id="options">
-                        <li><input type="radio" id="Option-one" name="option"><label for="Option-one">1999</label></li>
-                        <li><input type="radio" id="Option-two" name="option"><label for="Option-two">2002</label></li>
-                        <li><input type="radio" id="Option-three" name="option"><label for="Option-three">1998</label></li>
-                        <li><input type="radio" id="Option-four" name="option"><label for="Option-four">2005</label></li>
+                        <li><input type="radio" id="Option-one" name="option"><label for="Option-one"> 1999</label></li>
+                        <li><input type="radio" id="Option-two" name="option"><label for="Option-two"> 2002</label></li>
+                        <li><input type="radio" id="Option-three" name="option"><label for="Option-three"> 1998</label></li>
+                        <li><input type="radio" id="Option-four" name="option"><label for="Option-four"> 2005</label></li>
                     </ul>
                     <input type="button" value="Submit Answer" class="submit-answer-button">
                 </form>
@@ -51,6 +55,7 @@
     </main>
 
         
-
+    <script src="quizdata.js"></script>
+    <script src="quiz.js"></script>
 </body>
 </html>
