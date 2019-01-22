@@ -14,17 +14,17 @@ const QUESTIONS = [
     correctAns: 'Egypt'
   },
   {
-    question: 'What country Mo Salah is from?',
+    question: 'How many times Liverpool FC won the Champions League?',
     options: ['Germany', 'UK', 'USA', 'Egypt'],
     correctAns: 'Egypt'
   },
   {
-    question: 'What country Mo Salah is from?',
+    question: 'How was the top goal scorer in 2017/2018?',
     options: ['Germany', 'UK', 'USA', 'Egypt'],
     correctAns: 'Egypt'
   },
   {
-    question: 'What country Mo Salah is from?',
+    question: 'What ?',
     options: ['Germany', 'UK', 'USA', 'Egypt'],
     correctAns: 'Egypt'
   }
@@ -56,8 +56,8 @@ function generateHtmlQuestionsString(state, question){
   const options = question[state.questionNumber - 1].options;
   return `<div class="question-page">
     <div class="quiz-info-section">
-        <p>Question <span class="current-question-number">${state.questionNumber}</span> of <span class="total-question-number">${QUESTIONS.length}</span></p>
-        <p><span class="correct-score-count">${state.currentScore}</span>/<span class="total-question-number">${QUESTIONS.length}</span></p>
+        <p>Question: <span class="current-question-number">${state.questionNumber}</span> of <span class="total-question-number">${QUESTIONS.length}</span></p>
+        <p>Score: <span class="correct-score-count">${state.currentScore}</span>/<span class="total-question-number">${QUESTIONS.length}</span></p>
     </div>
     <div class="current-question-section">
         <form>
@@ -71,7 +71,7 @@ function generateHtmlQuestionsString(state, question){
             </div>
         </form>
     </div>
-</div>`;
+  </div>`;
 }
 
 function generateHtmlFeedbackString(state){
@@ -101,7 +101,6 @@ function renderHtml(){
   }
   else if (STORE.currentState === 'quiz'){
     console.log('Quiz working');
-
     $('.js-main').html(generateHtmlQuestionsString(STORE, QUESTIONS));
   }
   else if (STORE.currentState === 'feedback'){
@@ -114,10 +113,9 @@ function renderHtml(){
 
 // Handle start-quiz submit
 function handleStartQuiz(){
-  $('.js-main').on('click', '.js-start-button', function(event){
+  $('.js-main').on('click', '.js-start-button', function(){
     STORE.currentState = 'quiz';
     STORE.currentQuestion = QUESTIONS[STORE.questionNumber].question;
-    // STORE.currentScore =
     STORE.correctAnswer = QUESTIONS[STORE.questionNumber].correctAns;
     STORE.questionNumber++;
     renderHtml();
@@ -132,10 +130,9 @@ function updateUserScore(){
 
 // Handle submit answer 
 function handleAnswerSubmit(){   
-    // debugger; 
-  $('.js-main').on('click', '.js-submit-answer-button', function(event){
-    // event.preventDefault();
-    const userAnswer = $(this).closest('form').find('input[name="option"]:checked').val();
+  $('.js-main').on('submit', 'form', function(event){
+    event.preventDefault();
+    const userAnswer = $(this).find('input[name="option"]:checked').val();
     console.log(userAnswer);
     STORE.userAnswer = userAnswer;
     STORE.currentState = 'feedback';
@@ -146,7 +143,7 @@ function handleAnswerSubmit(){
 
 // Handle next question 
 function handleNextQuestion(){
-  $('.js-main').on('click', '.js-next-question-button', function(event){
+  $('.js-main').on('click', '.js-next-question-button', function(){
     if (STORE.questionNumber < QUESTIONS.length){
       STORE.currentQuestion = QUESTIONS[STORE.questionNumber].question;
       STORE.correctAnswer = QUESTIONS[STORE.questionNumber].correctAns;
@@ -162,7 +159,7 @@ function handleNextQuestion(){
 
 // handle reset quiz-app
 function handleReset(){
-  $('.js-main').on('click', '.js-reset-quiz-button', function(event){
+  $('.js-main').on('click', '.js-reset-quiz-button', function(){
     STORE.currentState = 'start';
     STORE.currentQuestion = '';
     STORE.userAnswer = '';
