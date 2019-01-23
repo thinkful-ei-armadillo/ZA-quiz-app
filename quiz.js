@@ -14,19 +14,19 @@ const QUESTIONS = [
     correctAns: 'Egypt'
   },
   {
-    question: 'How many times Liverpool FC won the Champions League?',
-    options: ['Germany', 'UK', 'USA', 'Egypt'],
-    correctAns: 'Egypt'
+    question: 'How many times did Liverpool FC win the Champions League?',
+    options: ['2', '3', '4', '5'],
+    correctAns: '5'
   },
   {
-    question: 'How was the top goal scorer in 2017/2018?',
-    options: ['Germany', 'UK', 'USA', 'Egypt'],
-    correctAns: 'Egypt'
+    question: 'Who was the top goal scorer in 2017 and 2018?',
+    options: ['Ronaldo', 'Saleh', 'Firmino', 'Dzeko'],
+    correctAns: 'Ronaldo'
   },
   {
-    question: 'What ?',
-    options: ['Germany', 'UK', 'USA', 'Egypt'],
-    correctAns: 'Egypt'
+    question: 'What country is Roberto Firmino from?',
+    options: ['Brazil', 'UK', 'Mexico', 'Australia'],
+    correctAns: 'Brazil'
   }
 ];
 
