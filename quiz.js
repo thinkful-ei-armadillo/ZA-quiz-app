@@ -14,19 +14,19 @@ const QUESTIONS = [
     correctAns: 'Egypt'
   },
   {
-    question: 'How many times Liverpool FC won the Champions League?',
-    options: ['Germany', 'UK', 'USA', 'Egypt'],
-    correctAns: 'Egypt'
+    question: 'How many times did Liverpool FC win the Champions League?',
+    options: ['2', '3', '4', '5'],
+    correctAns: '5'
   },
   {
-    question: 'Who was the top goal scorer in 2017/2018?',
-    options: ['Germany', 'UK', 'USA', 'Egypt'],
-    correctAns: 'Egypt'
+    question: 'Who was the top goal scorer in 2017 and 2018?',
+    options: ['Ronaldo', 'Salah', 'Firmino', 'Dzeko'],
+    correctAns: 'Salah'
   },
   {
-    question: 'What ?',
-    options: ['Germany', 'UK', 'USA', 'Egypt'],
-    correctAns: 'Egypt'
+    question: 'What country is Roberto Firmino from?',
+    options: ['Brazil', 'UK', 'Mexico', 'Australia'],
+    correctAns: 'Brazil'
   }
 ];
 
@@ -55,10 +55,9 @@ function generateHtmlQuestionsString(state, question){
   
   return `<div class="question-page">
     <div class="quiz-info-section">
-        <p>Question: <span class="current-question-number">${state.questionNumber}</span> of <span class="total-question-number">${QUESTIONS.length}</span></p>
+        <p>Question <span class="current-question-number">${state.questionNumber}</span> of <span class="total-question-number">${QUESTIONS.length}</span></p>
         <p>Score: <span class="correct-score-count">${state.currentScore}</span>/<span class="total-question-number">${QUESTIONS.length}</span></p>
     </div>
-    <hr>
     <div class="current-question-section">
         <form>
             <p class="current-question">${currentQuestion}</p>
@@ -91,7 +90,7 @@ function generateHtmlFeedbackString(state){
   return `<div class="feedback-page">
                 <div>
                     <p class="feedback-message">Your answer was <span class="question-result">${isCorrect ? 'correct!' : 'incorrect!'}</span></p>
-                    ${isCorrect ? 'Awesome, off to next question....' : `<p class="correct-answer">The correct answer is ${state.correctAnswer}</p>`}
+                    ${isCorrect ? 'Awesome, off to next question....' : `<p class="correct-answer">The correct answer is ${state.correctAnswer}.</p>`}
                 </div>
                 <input type="button" value="Next Question" class="js-next-question-button">
             </div>`;
