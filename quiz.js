@@ -90,9 +90,9 @@ function generateHtmlFeedbackString(state){
   return `<div class="feedback-page">
                 <div>
                     <p class="feedback-message">Your answer was <span class="question-result">${isCorrect ? 'correct!' : 'incorrect!'}</span></p>
-                    ${isCorrect ? 'Awesome, off to next question....' : `<p class="correct-answer">The correct answer is ${state.correctAnswer}.</p>`}
+                    ${isCorrect ? 'Good job!' : `<p class="correct-answer">The correct answer is ${state.correctAnswer}.</p>`}
                 </div>
-                <input type="button" value="Next Question" class="js-next-question-button">
+                <input type="button" value="Next" class="js-next-question-button">
             </div>`;
 }
 
@@ -124,10 +124,9 @@ function renderHtml(){
 
 
 function randomQuestionState(){
-	STORE.questionNumber++;
-	STORE.currentQuestion = QUESTIONS[STORE.askedQuestions[STORE.indexTracker]].question;
-	STORE.correctAnswer = QUESTIONS[STORE.askedQuestions[STORE.indexTracker]].correctAns;
-	// STORE.indexTracker++;
+  STORE.questionNumber++;
+  STORE.currentQuestion = QUESTIONS[STORE.askedQuestions[STORE.indexTracker]].question;
+  STORE.correctAnswer = QUESTIONS[STORE.askedQuestions[STORE.indexTracker]].correctAns;
 }
 
 // Handle start-quiz submit
@@ -136,8 +135,8 @@ function handleStartQuiz(){
     STORE.currentView = 'quiz';
     randomQuestionState();
     //STORE.questionNumber++;
-		renderHtml();
-		STORE.indexTracker++;
+    renderHtml();
+    STORE.indexTracker++;
   });
 }
 
@@ -176,17 +175,14 @@ function generateRandomQuestions(){
   }
 }
 
-
-
 // Handle next question 
 function handleNextQuestion(){
   $('.js-main').on('click', '.js-next-question-button', function(){
     if (STORE.indexTracker < QUESTIONS.length){
-			randomQuestionState()
+      randomQuestionState();
       STORE.currentView = 'quiz';
-      
-			renderHtml();
-			STORE.indexTracker++;
+      renderHtml();
+      STORE.indexTracker++;
     } else {
       STORE.currentView = 'result';
       renderHtml();
@@ -202,10 +198,10 @@ function handleReset(){
     STORE.userAnswer = '';
     STORE.currentScore = 0;
     STORE.questionNumber = 0;
-		STORE.correctAnswer = '';
-		STORE.askedQuestions = [];
-		STORE.indexTracker = 0;
-		generateRandomQuestions();
+    STORE.correctAnswer = '';
+    STORE.askedQuestions = [];
+    STORE.indexTracker = 0;
+    generateRandomQuestions();
     renderHtml();
   });
 }
