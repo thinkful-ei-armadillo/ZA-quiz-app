@@ -19,7 +19,7 @@ const QUESTIONS = [
     correctAns: 'Egypt'
   },
   {
-    question: 'How was the top goal scorer in 2017/2018?',
+    question: 'Who was the top goal scorer in 2017/2018?',
     options: ['Germany', 'UK', 'USA', 'Egypt'],
     correctAns: 'Egypt'
   },
@@ -31,13 +31,12 @@ const QUESTIONS = [
 ];
 
 const STORE = {
-  currentState: 'start',
+  currentView: 'start',
   currentQuestion: '',
   userAnswer: '',
   currentScore: 0,
   questionNumber: 0,
   correctAnswer: ''
-
 };
 
 
@@ -45,20 +44,21 @@ const STORE = {
 
 function generateStartHtmlString(){
   return `<section class="start-page">
-    <p>How much of a Liverpool FC supporter are you?</p>
-    <p></p>
-    <button class="js-start-button">Start Quiz</button>
-</section>`;
+            <p>How much of a Liverpool FC supporter are you?</p>
+            <button class="js-start-button">Start Quiz</button>
+          </section>`;
 }
 
 function generateHtmlQuestionsString(state, question){
   const currentQuestion = question[state.questionNumber - 1].question;
   const options = question[state.questionNumber - 1].options;
+  
   return `<div class="question-page">
     <div class="quiz-info-section">
         <p>Question: <span class="current-question-number">${state.questionNumber}</span> of <span class="total-question-number">${QUESTIONS.length}</span></p>
         <p>Score: <span class="correct-score-count">${state.currentScore}</span>/<span class="total-question-number">${QUESTIONS.length}</span></p>
     </div>
+    <hr>
     <div class="current-question-section">
         <form>
             <p class="current-question">${currentQuestion}</p>
@@ -107,18 +107,18 @@ function generateHtmlResultString(state){
 
 // Render HTML string to DOM
 function renderHtml(){
-  if (STORE.currentState === 'start'){
+  if (STORE.currentView === 'start'){
     console.log('Start working');
     $('.js-main').html(generateStartHtmlString());
   }
-  else if (STORE.currentState === 'quiz'){
+  else if (STORE.currentView === 'quiz'){
     console.log('Quiz working');
     $('.js-main').html(generateHtmlQuestionsString(STORE, QUESTIONS));
   }
-  else if (STORE.currentState === 'feedback'){
+  else if (STORE.currentView === 'feedback'){
     console.log('Feedback working');
     $('.js-main').html(generateHtmlFeedbackString(STORE));
-  } else if(STORE.currentState === 'result') {
+  } else if(STORE.currentView === 'result') {
     $('.js-main').html(generateHtmlResultString(STORE));
   }
 }
@@ -126,7 +126,7 @@ function renderHtml(){
 // Handle start-quiz submit
 function handleStartQuiz(){
   $('.js-main').on('click', '.js-start-button', function(){
-    STORE.currentState = 'quiz';
+    STORE.currentView = 'quiz';
     STORE.currentQuestion = QUESTIONS[STORE.questionNumber].question;
     STORE.correctAnswer = QUESTIONS[STORE.questionNumber].correctAns;
     STORE.questionNumber++;
@@ -144,10 +144,12 @@ function updateUserScore(){
 function handleAnswerSubmit(){   
   $('.js-main').on('submit', 'form', function(event){
     event.preventDefault();
-    const userAnswer = $(this).find('input[name="option"]:checked').val();
-    console.log(userAnswer);
+    const userAnswer = $(this)
+      .find('input[name="option"]:checked')
+      .val();
+
     STORE.userAnswer = userAnswer;
-    STORE.currentState = 'feedback';
+    STORE.currentView = 'feedback';
     updateUserScore();
     renderHtml();
   });
@@ -159,11 +161,11 @@ function handleNextQuestion(){
     if (STORE.questionNumber < QUESTIONS.length){
       STORE.currentQuestion = QUESTIONS[STORE.questionNumber].question;
       STORE.correctAnswer = QUESTIONS[STORE.questionNumber].correctAns;
-      STORE.currentState = 'quiz';
+      STORE.currentView = 'quiz';
       STORE.questionNumber++;
       renderHtml();
     } else {
-      STORE.currentState = 'result';
+      STORE.currentView = 'result';
       renderHtml();
     }
   });
@@ -172,7 +174,7 @@ function handleNextQuestion(){
 // handle reset quiz-app
 function handleReset(){
   $('.js-main').on('click', '.js-reset-quiz-button', function(){
-    STORE.currentState = 'start';
+    STORE.currentView = 'start';
     STORE.currentQuestion = '';
     STORE.userAnswer = '';
     STORE.currentScore = 0;

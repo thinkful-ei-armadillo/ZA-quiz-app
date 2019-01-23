@@ -1,0 +1,36 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: linear-gradient(
+      to right, 
+      #d36b6b, #ffa45f
+    );
+    color: #aa0202;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 1em;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #f7f7f7;
+	box-shadow: 0 0 3px rgba(0,0,0, 0.5)
+}
+
+header {
+    background-color: #881212
+}
+
+h1 {
+    margin: 0;
+    text-align: center;
+}
+
+.quiz-info-section p{
+    display: flex;
+    flex-direction: row;
+}
